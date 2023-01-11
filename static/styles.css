@@ -1,0 +1,105 @@
+.bg-paper-content-btm {
+    background: url(/static/img/long_paper_content.jpg) repeat-y right bottom;
+    background-size: 100%;
+}
+.bg-torn-btm {
+    background: url(/static/img/torn_paper_btm.png) no-repeat right top;
+    background-size: 100%;
+    padding-bottom: 40px;
+}
+.bg-torn-top {
+    background: url(/static/img/torn_paper_top.png) no-repeat right bottom;
+    background-size: 100%;
+    padding-top: 80px;
+}
+.bg-fantasy {
+    background: url(/static/img/cozy_trail.png) no-repeat center fixed;
+    background-size: cover;
+}
+.bg-card {
+    background-color: #d6bc97;
+    text-align: center;
+}
+.index-text p {
+    font-size: 20px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: mrs-eaves-roman-small-caps, serif;
+}
+h1 {
+    font-size: 72px;
+    text-shadow: 4px 4px 3px #3a0f08;
+}
+h2 {
+    font-size: 40px;
+}
+p {
+    font-size: 18px;
+    color: #58170D;
+    font-family: ff-scala-sans-pro, sans-serif;
+    text-indent: 30px;
+}
+.img-i img{
+    width: 100%;
+    height: 300px;
+    object-position: 0% 95%;
+    object-fit: cover;
+}
+.img-c img{
+    width: 100%;
+    height: 300px;
+    object-position: 0% 95%;
+    object-fit: cover;
+}
+.img-bs img {
+    width:100%;
+    height: 100%;
+    object-position: 0px;
+    object-fit: cover;
+}
+.dnd-red {
+    color: #58170D;
+}
+.dnd-dark {
+    color: #303030;
+}
+
+.bg-footer {
+    background-color: #303030;
+}
+
+.frame {
+    position: absolute;
+    z-index: 1;
+}
+#portrait-container {
+    position: relative;
+    top: 200px;
+    left: 140px;
+}
+#portrait-container img {
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: absolute;
+}
+#portrait-container img:first-child {
+    opacity: 1;
+}
+
+#backstory-container {
+    position: relative;
+    width: 438px;
+    height: 502px;
+    margin: 0px;
+}
+#backstory-container img {
+    position: absolute;
+    width: 438px;
+}
+.four-container {
+    text-align: right;
+}
+.four-container img {
+    width: 90%;
+}

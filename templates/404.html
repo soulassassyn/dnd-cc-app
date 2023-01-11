@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}404 Error{% endblock %}
+{% block main %}
+    <div class="container-lg">
+        <div class="container text-center text-light pt-3">
+            <h1>Oh no! 404 error!</h1>
+        </div>
+        <div class="container p-0" name="content-box">
+            <div class="container bg-torn-top">
+            </div>
+            <div class="container bg-paper-content-btm pb-5">
+                <div class="container pt-4">
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Oh no! It looks like you've stumbled upon a 404 error page. 
+                                Don't worry, it's not because you're lost in some dark and 
+                                dangerous dungeon (although that would certainly be an adventure).
+                            </p>
+                            <p>
+                                Instead, it looks like you've taken a wrong turn somewhere on our 
+                                website. But don't despair, a brave adventurer like yourself is sure 
+                                to find your way eventually. Just be sure to watch out for traps and 
+                                pesky goblins along the way.
+                            </p>
+                            <p>
+                                In the meantime, why not take a break and check out this adorable picture 
+                                of a baby dragon? Trust us, it will make you feel better.
+                            </p>
+                            <p>
+                                And remember, if all else fails, you can always use a locate object 
+                                spell to find what you're looking for. Good luck on your journey!
+                            </p>     
+                        </div>
+                        <div class="col">
+                            <div class="container four-container pb-4">
+                                <img src="/static/img/404_baby_dragon.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container bg-torn-btm"></div>
+        </div>
+    </div>
+{% endblock %}
