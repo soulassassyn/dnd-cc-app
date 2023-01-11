@@ -13,7 +13,7 @@
     padding-top: 80px;
 }
 .bg-fantasy {
-    background: url(/static/img/cozy_trail.png) no-repeat center fixed;
+    background: url(/static/img/cozy_trail.jpg) no-repeat center fixed;
     background-size: cover;
 }
 .bg-card {
