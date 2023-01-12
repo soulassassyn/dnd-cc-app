@@ -14,12 +14,13 @@
             <form action="/create" method="POST" id="createBackstory">
                 
                 <div class="row p-4">
+                    <!-- Total width of 'col' class is 12, after that, the next columns wrap below -->
                     <div class="col-9">
-                        <label class="form-label" for="charName">Character Name:</label>
-                        <input class="form-control" type="text" id="charName" name="charName" required>
+                        <label class="form-label" for="charName">Character Name</label>
+                        <input class="form-control" type="text" id="charName" name="charName" placeholder="ex. Barriston DeSaul" required>
                     </div>
                     <div class="col-3">
-                        <label class="form-label" for="charSex">Sex:</label>
+                        <label class="form-label" for="charSex">Sex</label>
                         <div class="form-check form-check">
                             <input class="form-check-input" type="radio" name="charSex" id="charSexM" value="He">
                             <label class="form-check-label" for="charSex">Male</label>
@@ -34,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <label class="form-label" for="charRace">Race:</label>
+                        <label class="form-label" for="charRace">Race</label>
                         <select class="form-select" aria-label="Default select example" id="charRace">
                             <option selected>Choose your Race</option>
                             {% for race in races %}
@@ -44,7 +45,7 @@
                         <input class="form-control" type="text" id="race-input" placeholder="Enter your race" style="display:none;">
                     </div>
                     <div class="col">
-                        <label class="form-label" for="charClass">Class:</label>
+                        <label class="form-label" for="charClass">Class</label>
                         <select class="form-select" aria-label="Default select example" id="charClass">
                             <option selected>Choose your Class</option>
                             {% for class in classes %}
@@ -109,12 +110,12 @@
                     <h2>Heart and Soul of a Hero</h2>
                 </div>
                 <div class="row p-4">
-                    <div class="col">
-                        <label class="form-label" for="charRegion">What region is your character from?</label>
-                        <input class="form-control" type="text" id="charRegion" name="charRegion">
+                    <div class="col-6">
+                        <label class="form-label" for="charRegion">Hometown</label>
+                        <input class="form-control" type="text" id="charRegion" name="charRegion" placeholder="ex. Neverwinter">
                     </div>
-                    <div class="col">
-                        <label class="form-label" for="charBackground">Background:</label>
+                    <div class="col-6">
+                        <label class="form-label" for="charBackground">Background</label>
                         <select class="form-select" aria-label="Default select example" id="charBackground">
                             <option selected>Choose your Background</option>
                             {% for background in backgrounds %}
@@ -122,6 +123,36 @@
                             {% endfor %}
                         </select><br>
                         <input class="form-control" type="text" id="background-input" placeholder="Enter your background" style="display:none;">
+                    </div>
+                    <div class="col-12">
+                    </div>
+                    <label class="form-label">Do you want to have any special visual traits?</label>
+                    <div class="col-2">
+                        <div class="form-check pb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">Tattoos</label>
+                        </div>
+                        <div class="form-check pb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">Scars</label>
+                        </div>
+                        <div class="form-check pb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">Piercings</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-check pb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">Distinct Eye Color</label>
+                        </div>
+                        <div class="form-check pb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">Distinct Hair Color</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+
                     </div>
                 </div>
                 <div class="row p-4 justify-content-center">

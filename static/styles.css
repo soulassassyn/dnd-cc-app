@@ -10,7 +10,7 @@
 .bg-torn-top {
     background: url(/static/img/torn_paper_top.png) no-repeat right bottom;
     background-size: 100%;
-    padding-top: 80px;
+    padding-top: 48px;
     margin-bottom: -1px;
 }
 .bg-fantasy {

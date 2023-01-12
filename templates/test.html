@@ -1,26 +1,99 @@
 {% extends "layout.html" %}
 {% block title %}Pricing Information{% endblock %}
 {% block main %}
-    <div class="container-lg">
-        
-        <div class="row text-center text-light pt-3">
-            <div class="col">
-                <h1>TEST PAGE</h1>
-            </div>
+<div class="container-lg px-4">
+    <div class="row gx-5">
+        <div class="col text-center text-light">
+            <h1>Bring Your Character to Life</h1>
         </div>
-
-        <div class="row bg-torn-top"></div>
         
-        <div class="row bg-paper-content-btm pb-5">
-            <div class="col pt-4">
-                <h2 class="text-center dnd-red">This IS a test!</h2>
-                <div class="frame-container">
-                    <img class="frame" src="/static/img/polish/wide_frame.png">
-                    <img src="/static/img/cozy_forest_trail.jpg">
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="row bg-torn-top gx-5"></div>
+    <div class="row bg-paper-content-btm dnd-red gx-5">
+        <div class="col-12">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">A Hero is Born</h2>
+                    <h4 class="text-center">for best results, fill in all fields</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form action="/create" method="POST" id="createBackstory">
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <label class="form-label" for="charName">Character Name</label>
+                            <input class="form-control" type="text" id="charName" name="charName" placeholder="ex. Barriston DeSaul" required>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <label class="form-label" for="charSex">Sex</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="charSex" id="charSexM" value="He">
+                                <label class="form-check-label" for="charSex">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="charSex" id="charSexF" value="She">
+                                <label class="form-check-label" for="charSex">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="charSex" id="charSexN" value="They">
+                                <label class="form-check-label" for="charSex">Nonbinary</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="charRace">Race</label>
+                            <select class="form-select" aria-label="Default select example" id="charRace">
+                                <option selected>Choose your Race</option>
+                                {% for race in races %}
+                                    <option value="{{ race }}">{{ race }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <input class="form-control" type="text" id="race-input" placeholder="Enter your race" style="display:none;">
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="charClass">Class</label>
+                            <select class="form-select" aria-label="Default select example" id="charClass">
+                                <option selected>Choose your Class</option>
+                                {% for class in classes %}
+                                    <option value="{{ class }}">{{ class }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <input class="form-control" type="text" id="class-input" placeholder="Enter your class" style="display:none;">
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-danger" id="button">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <img src="/static/img/cozy_village.jpg">
                 </div>
             </div>
         </div>
-        <div class="row bg-torn-btm">
-        </div>
     </div>
+    <div class="row bg-torn-btm gx-5"></div>
+</div>
 {% endblock %}
