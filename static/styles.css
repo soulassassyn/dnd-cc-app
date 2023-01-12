@@ -6,12 +6,12 @@
     background: url(/static/img/torn_paper_btm.png) no-repeat right top;
     background-size: 100%;
     padding-bottom: 40px;
-    margin-bottom: -1px;
 }
 .bg-torn-top {
     background: url(/static/img/torn_paper_top.png) no-repeat right bottom;
     background-size: 100%;
     padding-top: 80px;
+    margin-bottom: -1px;
 }
 .bg-fantasy {
     background: url(/static/img/cozy_trail.jpg) no-repeat center fixed;
@@ -111,3 +111,8 @@ img {
     position: absolute;
     z-index: 1;
 }
+
+#other-input {
+    display: none;
+  }
+  

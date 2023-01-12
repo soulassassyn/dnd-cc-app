@@ -11,8 +11,8 @@ app.config['TESTING'] = True
 # You can generate your own at https://beta.openai.com/
 load_dotenv()
 openai.api_key = os.environ.get('API_KEY')
-switch_state = False
 
+switch_state = False
 @app.route("/switch", methods=["POST"])
 def toggle_switch():
     global switch_state
@@ -34,6 +34,12 @@ def index():
 
 @app.route("/create", methods=["GET", "POST"])
 def process_quiz():
+    races = ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Custom..."]
+    racesExtra = ["Aarakocra", "Aasimar", "Air Genasi", "Bugbear", "Centaur", "Changeling", "Deep Gnome", "Duergar", "Earth Genasi", "Eladrin", "Fairy", "Firbolg", "Fire Genasi", "Githyanki", "Githzerai", "Goblin", "Goliath", "Harengon", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Minotaur", "Orc", "Satyr", "Sea Elf", "Shadar-kai", "Shifter", "Tabaxi", "Tortle", "Triton", "Water Genasi", "Yuan-ti"]
+    classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard", "Custom..."]
+    backgrounds = ["Acolyte", "Criminal/Spy", "Folk Hero", "Noble", "Sage", "Soldier", "Custom..."]
+
+
     if request.method == "POST":
         # Get the answers to the quiz questions from the form submission
         q1 = request.form.get("q1")
@@ -80,7 +86,7 @@ def process_quiz():
         # Return the two halves of backstory to the user
         return render_template("backstory.html", firstHalf=firstHalf, secondHalf=secondHalf, charName=charName)
     
-    return render_template("create.html")
+    return render_template("create.html", races=races, classes=classes, backgrounds=backgrounds)
 
 def generate_backstory(q1, q2, q3, q4, q5, q6, charRealm, charSex, charRace, charClass, charName):
   # Use the ChatGPT API to generate a backstory based on the quiz answers

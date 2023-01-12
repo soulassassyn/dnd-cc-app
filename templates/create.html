@@ -10,7 +10,7 @@
         <div class="col pt-4">
             <h2 class="text-center">A Hero is Born</h2>
             <h4 class="text-center">for best results, fill in all fields</h4>
-            <form action="/create" method="POST">
+            <form action="/create" method="POST" id="createBackstory">
                 
                 <div class="row p-4">
                     <div class="col-9">
@@ -34,11 +34,23 @@
                     </div>
                     <div class="col">
                         <label class="form-label" for="charRace">Race:</label>
-                        <input class="form-control" type="text" id="charRace" name="charRace" required>
+                        <select class="form-select" aria-label="Default select example" id="charRace">
+                            <option selected>Choose your Race</option>
+                            {% for race in races %}
+                                <option value="{{ race }}">{{ race }}</option>
+                            {% endfor %}
+                        </select><br>
+                        <input class="form-control" type="text" id="race-input" placeholder="Enter your race" style="display:none;">
                     </div>
                     <div class="col">
                         <label class="form-label" for="charClass">Class:</label>
-                        <input class="form-control" type="text" id="charClass" name="charClass" required>
+                        <select class="form-select" aria-label="Default select example" id="charClass">
+                            <option selected>Choose your Class</option>
+                            {% for class in classes %}
+                                <option value="{{ class }}">{{ class }}</option>
+                            {% endfor %}
+                        </select><br>
+                        <input class="form-control" type="text" id="class-input" placeholder="Enter your class" style="display:none;">
                     </div>
                 </div>
                 <div class="row img-c p-4">
@@ -101,10 +113,14 @@
                         <input class="form-control" type="text" id="charRegion" name="charRegion">
                     </div>
                     <div class="col">
-                        <label class="form-label" for="charLocal">City slicker or farm hand?</label>
-                        <select class="form-select" id="charLocal">
-                            <option value="Option 1">Option 1</option>
-                        </select>
+                        <label class="form-label" for="charBackground">Background:</label>
+                        <select class="form-select" aria-label="Default select example" id="charBackground">
+                            <option selected>Choose your Background</option>
+                            {% for background in backgrounds %}
+                                <option value="{{ background }}">{{ background }}</option>
+                            {% endfor %}
+                        </select><br>
+                        <input class="form-control" type="text" id="background-input" placeholder="Enter your background" style="display:none;">
                     </div>
                 </div>
                 <div class="row p-4 justify-content-center">
