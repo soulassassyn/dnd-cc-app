@@ -7,26 +7,21 @@
     </div>
     <div class="row bg-torn-top"></div>
     <div class="row bg-paper-content-btm p-4">
-        <h2 class="dnd-red text-center">Your Adventure Awaits</h2>
+        <h2 class="dnd-red text-center pb-4">Your Adventure Awaits</h2>
         <div class="col">
-            <div class="row">
-                <div class="col">
-                    <p>{{ firstHalf }}</p>
-                    <p>{{ secondHalf }}</p>
-                </div>
-                <div class="col">
-                    <div class="container">
-
-                            <img src="/static/img/pirate_ship.jpg">
-
-                        <div class="container text-center pt-4">
-                            <h3>Download your PDF here</h3>
-                            <form action="/" method="POST">
-                                <button type="submit" class="btn btn-danger" id="button">Download</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <p>{{ firstHalf }}</p>
+            <p>{{ secondHalf }}</p>
+        </div>
+        <div class="col">
+            <div class="frame-container pb-5 pt-4">
+                <img class="frame" src="/static/img/polish/square_frame.png">
+                <img class="frame-img" src="/static/img/portal_to_new_worlds.jpg">
+            </div>
+            <div class="row dnd-red text-center pt-4">
+                <h3>Download your PDF here</h3>
+                <form action="/" method="POST">
+                    <button type="submit" class="btn btn-danger" id="button">Download</button>
+                </form>
             </div>
         </div>
     </div>
