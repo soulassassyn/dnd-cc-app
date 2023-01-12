@@ -1,41 +1,35 @@
 {% extends "layout.html" %}
 {% block title %}{{ charName }}'s Backstory{% endblock %}    
 {% block main %}
-    <div class="container-lg">
-        <div class="container text-center text-light pt-3">
-            <h1>The Legend of {{ charName }}</h1>
-        </div>
-        <div class="container p-0" name="content-box">
-            <div class="bg-torn-top"></div>
-            <div class="container bg-paper-content-btm dnd-red pb-4">
-                <div class="container text-center pt-4 pb-4">
-                    <h2>Your Adventure Awaits</h2>
+<div class="container-lg">
+    <div class="row text-center text-light pt-3">
+        <h1>The Legend of {{ charName }}</h1>
+    </div>
+    <div class="row bg-torn-top"></div>
+    <div class="row bg-paper-content-btm p-4">
+        <h2 class="dnd-red text-center">Your Adventure Awaits</h2>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <p>{{ firstHalf }}</p>
+                    <p>{{ secondHalf }}</p>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <p>{{ firstHalf }}</p>
-                            <p>{{ secondHalf }}</p>
-                        </div>
-                        <div class="col">
-                            <div class="container">
-                                <img class="frame" src="/static/img/portrait_frame.png">
-                                <div id="backstory-container">
-                                    <img src="/static/img/pirate_ship.jpg">
-                                </div>
-                                <div class="container text-center pt-4">
-                                    <h3>Download your PDF here</h3>
-                                    <form action="/" method="POST">
-                                        <button type="submit" class="btn btn-danger" id="button">Download</button>
-                                    </form>
-                                </div>
-                            </div>
+                <div class="col">
+                    <div class="container">
+
+                            <img src="/static/img/pirate_ship.jpg">
+
+                        <div class="container text-center pt-4">
+                            <h3>Download your PDF here</h3>
+                            <form action="/" method="POST">
+                                <button type="submit" class="btn btn-danger" id="button">Download</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-torn-btm"></div>  
         </div>
     </div>
-
+    <div class="row bg-torn-btm"></div>  
+</div>
 {% endblock %}
