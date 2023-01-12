@@ -48,15 +48,16 @@ def process_quiz():
         q4 = request.form.get("q4")
         q5 = request.form.get("q5")
         q6 = request.form.get("q6")
-        charRealm = "Faerûn"
         charSex = request.form.get("charSex")
         charRace = request.form.get("charRace")
         charClass = request.form.get("charClass")
         charName = request.form.get("charName")
+        charRegion = request.form.get("charRegion")
+        charBackground = request.form.get("charBackground")
         
         # Use the answers to generate a backstory using the ChatGPT API
         if switch_state == True:
-            backstory = generate_backstory(q1, q2, q3, q4, q5, q6, charRealm, charSex, charRace, charClass, charName)
+            backstory = generate_backstory(q1, q2, q3, q4, q5, q6, charRegion, charSex, charRace, charClass, charName, charBackground)
         else:
             backstory = "Barriston grew up in a small secluded village, on the edge of the Realm of Davorel. His parents were members of an ancient line of Paladin Knights that had served the realm since its founding. He was raised to be dutiful and respectful, learning from an early age the importance of chivalry and honour. He watched as his village grew more prosperous over the years due to trade with travelers from far and wide. But as it did so, fear began to creep into everyday life--stories of bandits and monsters terrorising local merchants spread like wildfire, until eventually it became too dangerous for traders to enter their borders anymore. With no other options left, Barriston's parents decided to join a group of other villagers who set off together in search for safety elsewhere. They made their way southwards through treacherous terrain until they reached a large city called Sontacia that promised protection within its walls. It was there that Barriston found himself recruited by the local Paladin Order—an organization that dedicated itself solely to protecting those in need against any kind of oppression or threat. For several years he trained under these warriors' tutelage, honing his skills both in combat and diplomacy alike as he learnt what it meant to fight for justice while still remaining fair-minded and diplomatic towards all sides involved in any conflict he found himself embroiled in later on down his path. Now armed with both strength and chastity at his side, Barriston strives each day to make a difference–to protect those who cannot protect themselves; so that others may live without fear just as he once did growing up back home before tragedy struck them all those many years ago when he was yet but just a boy."
         
@@ -88,13 +89,13 @@ def process_quiz():
     
     return render_template("create.html", races=races, classes=classes, backgrounds=backgrounds)
 
-def generate_backstory(q1, q2, q3, q4, q5, q6, charRealm, charSex, charRace, charClass, charName):
+def generate_backstory(q1, q2, q3, q4, q5, q6, charRegion, charSex, charRace, charClass, charName, charBackground):
   # Use the ChatGPT API to generate a backstory based on the quiz answers
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=f"""Create a rich background story for a Dungeons & Dragons character.
                     {charSex} is a {charRace} {charClass} named {charName}.
-                    {charName} is from somewhere in {charRealm}.
+                    {charSex} is from {charRegion} and was a {charBackground}.
                     The character is motivated by {q1}. 
                     They feel {q2} about authority. 
                     {q3} is how they handle conflict.
