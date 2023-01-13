@@ -14,7 +14,7 @@
     margin-bottom: -1px;
 }
 .bg-fantasy {
-    background: url(/static/img/cozy_trail.jpg) no-repeat center fixed;
+    background: url(/static/img/watercolor/bg_forest.jpg) no-repeat center fixed;
     background-size: cover;
 }
 .bg-card {
@@ -71,13 +71,28 @@ img {
     background-color: #303030;
 }
 
-#portrait-container {
-    position: relative;
-    height: 600px;
+@media (max-width: 769px) {
+    #portrait-container {
+        position: relative;
+        height: calc(94vw);
+    }
 }
+@media (min-width: 768px) and (max-width: 1399px) {
+    #portrait-container {
+        position: relative;
+        height: calc(50vw);
+    }
+}
+@media (min-width: 1400px) {
+    #portrait-container {
+        position: relative;
+        height: 750px;
+    }
+}
+
 #portrait-container img {
     opacity: 0;
-    transition: opacity 2s;
+    transition: opacity 1.5s;
     width: 100%;
     position: absolute;
 }

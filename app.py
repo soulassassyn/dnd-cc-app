@@ -87,7 +87,7 @@ def process_quiz():
         # Return the two halves of backstory to the user
         return render_template("backstory.html", firstHalf=firstHalf, secondHalf=secondHalf, charName=charName)
     
-    return render_template("create.html", races=races, classes=classes, backgrounds=backgrounds)
+    return render_template("create01.html", races=races, classes=classes, backgrounds=backgrounds)
 
 def generate_backstory(q1, q2, q3, q4, q5, q6, charRegion, charSex, charRace, charClass, charName, charBackground):
   # Use the ChatGPT API to generate a backstory based on the quiz answers

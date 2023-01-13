@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}A Hero is Born{% endblock %}
 {% block main %}
+<script src="/static/app.js"></script>
 <div class="container-lg px-4">
     <div class="row text-center text-light gx-5" name="main-header">
         <div class="col d-none d-md-block">
@@ -67,21 +68,21 @@
                             <input class="form-control" type="text" id="class-input" placeholder="Enter your class" style="display:none;">
                         </div>
                     </div>
-                    <div class="row justify-content-between" name="button-content">
+                    <div class="row justify-content-between pt-4" name="button-content">
                         <div class="col-5 text-center">
                             <p style="text-indent:0px;">Click Submit if you want to create a backstory with just this information.</p>
                             <button type="submit" class="btn btn-danger" id="button">Submit</button>
                         </div>
                         <div class="col-5 text-center">
                             <p style="text-indent:0px;">Click Next if you'd like to give your character additional information.</p>
-                            <button type="next" class="btn btn-primary px-4" id="next">Next</button>
+                            <button type="submit" class="btn btn-primary px-4" id="next">Next</button>
                         </div>
                     </div>
 
                     </form>
                 </div>
-                <div class="col d-none d-md-block align-self-center" name="image-content-column">
-                    <img src="/static/img/cozy_village.jpg">
+                <div class="col-12 col-md-6 d-md-block align-self-center" name="image-content-column">
+                    <img src="/static/img/watercolor/scene_movie_poster_01.png">
                 </div>
             </div>
         </div>
