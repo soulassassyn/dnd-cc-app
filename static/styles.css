@@ -33,7 +33,13 @@ h1 {
     text-shadow: 4px 4px 3px #3a0f08;
 }
 h2 {
-    font-size: 40px;
+    font-size: 48px;
+}
+h2.title {
+    text-shadow: 4px 4px 3px #3a0f08;
+}
+h3 {
+    font-size: 32px;
 }
 p {
     font-size: 18px;
