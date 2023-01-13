@@ -12,5 +12,5 @@ document.addEventListener("DOMContentLoaded", () => {
     
       // Fade in the new image
       images[currentImageIndex].style.opacity = 1;
-    }, 3500);
+    }, 5000);
 });

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block title %}Hidden Depths{% endblock %}
+{% block main %}
+<div class="container-lg px-4">
+    <div class="row text-center text-light gx-5" name="main-header">
+        <div class="col d-none d-md-block">
+            <h1>Bring Your Character to Life</h1>
+        </div>
+        <div class="col d-md-none">
+            <h2>Bring Your Character to Life</h2>
+        </div>
+    </div>
+    <div class="row bg-torn-top gx-5"></div>
+    <div class="row bg-paper-content-btm dnd-red gx-5 pb-5" name="paper-content-container">
+        <div class="col">
+            <div class="row py-4" name="paper-content-header">
+                <div class="col text-center d-none d-md-block">
+                    <h2>Discover your character's hidden depths</h2>
+                </div>
+                <div class="col text-center d-md-none">
+                    <h3>Discover your character's hidden depths</h3>
+                </div>
+            </div>
+            <div class="row gx-5" name="paper-content-body">
+                <div class="col-12" name="form-content-column">
+                    <form action="/create" method="POST" id="createBackstory">
+                    <div class="row gy-4">
+                        <div class="col-6 col-lg-5">
+                            <h4>1. What is your character's primary motivation?</h4>
+                            <label class="form-check-label ms-4" for="q1a1"><input class="form-check-input" type="radio" id="q1a1" name="q1" value="Power and control"> Power and control</label><br>
+                            <label class="form-check-label ms-4" for="q1a2"><input class="form-check-input" type="radio" id="q1a2" name="q1" value="Wealth and success"> Wealth and success</label><br>
+                            <label class="form-check-label ms-4" for="q1a3"><input class="form-check-input" type="radio" id="q1a3" name="q1" value="Adventure and excitement"> Adventure and excitement</label><br>
+                            <label class="form-check-label ms-4" for="q1a4"><input class="form-check-input" type="radio" id="q1a4" name="q1" value="Protecting those they care about"> Protecting those they care about</label><br><br>
+                            
+                            <h4>2. How do they feel about authority?</h4>
+                            <label class="form-check-label ms-4" for="q2a1"><input class="form-check-input" type="radio" id="q2a1" name="q2" value="Respectful and obedient"> Respectful and obedient</label><br>
+                            <label class="form-check-label ms-4" for="q2a2"><input class="form-check-input" type="radio" id="q2a2" name="q2" value="Indifferent and neutral"> Indifferent and neutral</label><br>
+                            <label class="form-check-label ms-4" for="q2a3"><input class="form-check-input" type="radio" id="q2a3" name="q2" value="Skeptical and questioning"> Skeptical and questioning</label><br>
+                            <label class="form-check-label ms-4" for="q2a4"><input class="form-check-input" type="radio" id="q2a4" name="q2" value="Defiant and rebellious"> Defiant and rebellious</label><br><br>
+                            
+                            <h4>3. How do they handle conflict?</h4>
+                            <label class="form-check-label ms-4" for="q3a1"><input class="form-check-input" type="radio" id="q3a1" name="q3" value="Fair and diplomatic"> Fair and diplomatic</label><br>
+                            <label class="form-check-label ms-4" for="q3a2"><input class="form-check-input" type="radio" id="q3a2" name="q3" value="Rational and logical"> Rational and logical</label><br>
+                            <label class="form-check-label ms-4" for="q3a3"><input class="form-check-input" type="radio" id="q3a3" name="q3" value="Emotional and reactive"> Emotional and reactive</label><br>
+                            <label class="form-check-label ms-4" for="q3a4"><input class="form-check-input" type="radio" id="q3a4" name="q3" value="Aggressive and confrontational"> Aggressive and confrontational</label><br><br>
+                        </div>
+                        <div class="col-7 d-none d-lg-block align-self-center" name="image-content-column">
+                            <img src="/static/img/pirate_sunset.jpg">
+                        </div>
+                        <div class="col-7 d-none d-lg-block align-self-center" name="image-content-column">
+                            <img src="/static/img/green_dragon.jpg">
+                        </div>
+                        <div class="col-6 col-lg-5">
+                            <h4>4. What are their goals and aspirations?</h4>
+                            <label class="form-check-label ms-4" for="q4a1"><input class="form-check-input" type="radio" id="q4a1" name="q4" value="To achieve greatness and fame"> To achieve greatness and fame</label><br>
+                            <label class="form-check-label ms-4" for="q4a2"><input class="form-check-input" type="radio" id="q4a2" name="q4" value="To live a simple and peaceful life"> To live a simple and peaceful life</label><br>
+                            <label class="form-check-label ms-4" for="q4a3"><input class="form-check-input" type="radio" id="q4a3" name="q4" value="To seek out new experiences and challenges"> To seek out new experiences and challenges</label><br>
+                            <label class="form-check-label ms-4" for="q4a4"><input class="form-check-input" type="radio" id="q4a4" name="q4" value="To make a difference in the world"> To make a difference in the world</label><br><br>
+                            
+                            <h4>5. What are their weaknesses and flaws?</h4>
+                            <label class="form-check-label ms-4" for="q5a1"><input class="form-check-input" type="radio" id="q5a1" name="q5" value="Pride and ego"> Pride and ego</label><br>
+                            <label class="form-check-label ms-4" for="q5a2"><input class="form-check-input" type="radio" id="q5a2" name="q5" value="Greed and envy"> Greed and envy</label><br>
+                            <label class="form-check-label ms-4" for="q5a3"><input class="form-check-input" type="radio" id="q5a3" name="q5" value="Anger and impulsivity"> Anger and impulsivity</label><br>
+                            <label class="form-check-label ms-4" for="q5a4"><input class="form-check-input" type="radio" id="q5a4" name="q5" value="Self-doubt and insecurity"> Self-doubt and insecurity</label><br><br>
+                            
+                            <h4>6. How do they relate to others?</h4>
+                            <label class="form-check-label ms-4" for="q6a1"><input class="form-check-input" type="radio" id="q6a1" name="q6" value="Supportive and compassionate"> Supportive and compassionate</label><br>
+                            <label class="form-check-label ms-4" for="q6a2"><input class="form-check-input" type="radio" id="q6a2" name="q6" value="Practical and straightforward"> Practical and straightforward</label><br>
+                            <label class="form-check-label ms-4" for="q6a3"><input class="form-check-input" type="radio" id="q6a3" name="q6" value="Mysterious and enigmatic"> Mysterious and enigmatic</label><br>
+                            <label class="form-check-label ms-4" for="q6a4"><input class="form-check-input" type="radio" id="q6a4" name="q6" value="Flirtatious and charming"> Flirtatious and charming</label><br><br>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between pt-5" name="button-content">
+                        <div class="col-5 text-center">
+                            <p style="text-indent:0px;">Click Submit if you want to create a backstory with just this information.</p>
+                            <button type="submit" class="btn btn-danger" id="button">Submit</button>
+                        </div>
+                        <div class="col-5 text-center">
+                            <p style="text-indent:0px;">Click Next if you'd like to give your character additional information.</p>
+                            <button type="next" class="btn btn-primary px-4" id="next">Next</button>
+                        </div>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-torn-btm gx-5"></div>
+</div>
+{% endblock %}

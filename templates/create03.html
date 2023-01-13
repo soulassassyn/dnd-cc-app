@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block title %}Pricing Information{% endblock %}
+{% block main %}
+<div class="container-lg px-4">
+    <div class="row text-center text-light gx-5" name="main-header">
+        <div class="col d-none d-md-block">
+            <h1>Bring Your Character to Life</h1>
+        </div>
+        <div class="col d-md-none">
+            <h2>Bring Your Character to Life</h2>
+        </div>
+    </div>
+    <div class="row bg-torn-top gx-5"></div>
+    <div class="row bg-paper-content-btm dnd-red gx-5 pb-5" name="paper-content-container">
+        <div class="col">
+            <div class="row py-4" name="paper-content-header">
+                <div class="col text-center d-none d-md-block">
+                    <h2>Heart and Soul of a Hero</h2>
+                </div>
+                <div class="col text-center d-md-none">
+                    <h3>Heart and Soul of a Hero</h3>
+                </div>
+            </div>
+            <div class="row gx-5" name="paper-content-body">
+                <div class="col" name="form-content-column">
+                    <form action="/create" method="POST" id="createBackstory">
+                    <div class="row gy-4">
+                        <div class="col-6">
+                            <label class="form-label" for="charRegion">Hometown</label>
+                            <input class="form-control" type="text" id="charRegion" name="charRegion" placeholder="ex. Neverwinter">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="charBackground">Background</label>
+                            <select class="form-select" aria-label="Default select example" id="charBackground">
+                                <option selected>Choose your Background</option>
+                                {% for background in backgrounds %}
+                                    <option value="{{ background }}">{{ background }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <input class="form-control" type="text" id="background-input" placeholder="Enter your background" style="display:none;">
+                        </div>
+                        <label class="form-label">Do you want to have any special visual traits?</label>
+                        <div class="col-6 col-lg-4">
+                            <div class="form-check pb-2">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">Tattoos</label>
+                            </div>
+                            <div class="form-check pb-2">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">Scars</label>
+                            </div>
+                            <div class="form-check pb-2">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">Piercings</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <div class="form-check pb-2">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">Distinct Eye Color</label>
+                            </div>
+                            <div class="form-check pb-2">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">Distinct Hair Color</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                        </div>
+                    </div>
+                    <div class="row justify-content-between pt-5" name="button-content">
+                        <div class="col-5 text-center">
+                            <p style="text-indent:0px;">Click Submit if you want to create a backstory with just this information.</p>
+                            <button type="submit" class="btn btn-danger" id="button">Submit</button>
+                        </div>
+                        <div class="col-5 text-center">
+                            <p style="text-indent:0px;">Click Next if you'd like to give your character additional information.</p>
+                            <button type="next" class="btn btn-primary px-4" id="next">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col d-none d-lg-block align-self-center" name="image-content-column">
+                <img src="/static/img/giant_battle_03.jpg">
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-torn-btm gx-5"></div>
+</div>
+{% endblock %}

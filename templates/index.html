@@ -2,21 +2,36 @@
 {% block title %}Welcome to Character Background Generator{% endblock %}
 {% block main %}
 <script src="/static/image_fade.js"></script>
-<div class="container-lg">
-    <div class="row text-center text-light pt-3">
-        <h1>Create a Legendary Backstory</h1>
+<div class="container-lg px-4">
+    <div class="row text-center text-light gx-5" name="main-header">
+        <div class="col d-none d-md-block">
+            <h1>Create a Legendary Backstory</h1>
+        </div>
+        <div class="col d-md-none">
+            <h2>Create a Legendary Backstory</h2>
+        </div>
     </div>
-    <div class="row bg-torn-top"></div>
-    <div class="row bg-paper-content-btm pb-5">
-        <div class="col p-4">
-            <h2 class="text-center dnd-red">Discover Your Character's Unique Origin</h2>
-            <div class="row">
-                <div class="col dnd-red pb-5 index-text">
+    <div class="row bg-torn-top gx-5"></div>
+    <div class="row bg-paper-content-btm gx-5 pb-5">
+        <div class="col">
+            <div class="row py-4 dnd-red" name="paper-content-header">
+                <div class="col text-center d-none d-md-block">
+                    <h2>Discover Your Character's Unique Origin</h2>
+                </div>
+                <div class="col text-center d-md-none">
+                    <h3>Discover Your Character's Unique Origin</h3>
+                </div>
+            </div>
+            <div class="row gx-5" name="paper-content-body">
+                <div class="col dnd-red index-text text-center">
                     <p>
                         The D&D Backstory Generator is an exciting tool for players looking to 
                         elevate their characters, giving them the opportunity to craft unique 
                         and original origin stories with ease.
                     </p>
+                    <div class="row ms-5 img-i">
+                        <img class="mx-auto d-block" src="/static/img/watercolor/backstory_tome.png">
+                    </div>
                     <p>
                         Bring the rich history of your character to life now by clicking below.
                     </p>
@@ -27,25 +42,18 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="index-frame-container">
-                        <img class="frame" src="/static/img/tome_frame_75.png">
-                        <!-- <div id="portrait-container">
-                            <img src="/static/img/character_portraits/001.jpg">
-                            <img src="/static/img/character_portraits/002.jpg">
-                            <img src="/static/img/character_portraits/003.jpg">
-                            <img src="/static/img/character_portraits/004.jpg">
-                            <img src="/static/img/character_portraits/005.jpg">
-                            <img src="/static/img/character_portraits/006.jpg">
-                            <img src="/static/img/character_portraits/007.jpg">
-                            <img src="/static/img/character_portraits/008.jpg">
-                            <img src="/static/img/character_portraits/009.jpg">
-                            <img src="/static/img/character_portraits/010.jpg">
-                        </div> -->
+                    <div id="portrait-container">
+                        <img src="/static/img/watercolor/aasimar_001.png">
+                        <img src="/static/img/watercolor/orc_warrior_01.png">
+                        <img src="/static/img/watercolor/elf_druid_02.png">
+                        <img src="/static/img/watercolor/tiefling_warlock_01.png">
+                        <img src="/static/img/watercolor/elf_cleric_01.png">
+                        <img src="/static/img/watercolor/human_bard_01.png">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row bg-torn-btm"></div>
+    <div class="row bg-torn-btm gx-5"></div>
 </div>
 {% endblock %}
