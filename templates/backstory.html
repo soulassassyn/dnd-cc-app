@@ -1,9 +1,8 @@
 {% extends "layout.html" %}
 {% block title %}{{ charName }}'s Backstory{% endblock %}    
 {% block main %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="/static/downloadpdf.js"></script>
-<div class="container-lg px-4">
+<div class="container-lg px-4 PDF-Page">
     <div class="row text-center text-light gx-5" name="main-header">
         <div class="col d-none d-lg-block">
             <h1>The Legend of {{ charName }}</h1>
