@@ -1,4 +1,4 @@
-# dnd-character-creator
+# dnd-character-backstory-creator
 Create deep and interesting character background stories for Dungeons &amp; Dragons.
 
 Utilizing OpenAI's GPT-3 Text completion AI, this app gathers some quick information from the user via a personality quiz and creates a backstory incorporating the traits from the quiz.
