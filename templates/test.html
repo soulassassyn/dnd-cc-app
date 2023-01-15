@@ -1,13 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}A Hero is Born{% endblock %}
 {% block main %}
-<div class="container-lg px-4">
+<div class="container-lg px-4 pdf">
     <div class="row text-center text-light gx-5" name="main-header">
         <div class="col d-none d-md-block">
             <h1>Bring Your Character to Life</h1>
-        </div>
-        <div class="col d-md-none">
-            <h2>Bring Your Character to Life</h2>
         </div>
     </div>
     <div class="row bg-torn-top gx-5"></div>
@@ -18,70 +15,15 @@
                     <h2>A Hero is Born</h2>
                     <h4>for best results, fill in all fields</h4>
                 </div>
-                <div class="col text-center d-md-none">
-                    <h3>A Hero is Born</h3>
-                    <h5>for best results, fill in all fields</h5>
-                </div>
             </div>
             <div class="row gx-5" name="paper-content-body">
-                <div class="col" name="form-content-column">
-                    <form action="/create" method="POST" id="createBackstory">
-                    <div class="row gy-4">
-                        <div class="col-12 col-lg-8">
-                            <label class="form-label" for="charName">Character Name</label>
-                            <input class="form-control" type="text" id="charName" name="charName" placeholder="ex. Barriston DeSaul" required>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <label class="form-label" for="charSex">Sex</label><br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="charSex" id="charSexM" value="He">
-                                <label class="form-check-label" for="charSex">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="charSex" id="charSexF" value="She">
-                                <label class="form-check-label" for="charSex">Female</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="charSex" id="charSexN" value="They">
-                                <label class="form-check-label" for="charSex">Nonbinary</label>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <label class="form-label" for="charRace">Race</label>
-                            <select class="form-select" aria-label="Default select example" id="charRace">
-                                <option selected>Choose your Race</option>
-                                {% for race in races %}
-                                    <option value="{{ race }}">{{ race }}</option>
-                                {% endfor %}
-                            </select><br>
-                            <input class="form-control" type="text" id="race-input" placeholder="Enter your race" style="display:none;">
-                        </div>
-                        <div class="col-lg-6">
-                            <label class="form-label" for="charClass">Class</label>
-                            <select class="form-select" aria-label="Default select example" id="charClass">
-                                <option selected>Choose your Class</option>
-                                {% for class in classes %}
-                                    <option value="{{ class }}">{{ class }}</option>
-                                {% endfor %}
-                            </select><br>
-                            <input class="form-control" type="text" id="class-input" placeholder="Enter your class" style="display:none;">
-                        </div>
-                    </div>
-                    <div class="row justify-content-between" name="button-content">
-                        <div class="col-5 text-center">
-                            <p style="text-indent:0px;">Click Submit if you want to create a backstory with just this information.</p>
-                            <button type="submit" class="btn btn-danger" id="button">Submit</button>
-                        </div>
-                        <div class="col-5 text-center">
-                            <p style="text-indent:0px;">Click Next if you'd like to give your character additional information.</p>
-                            <button type="next" class="btn btn-primary px-4" id="next">Next</button>
-                        </div>
-                    </div>
-
-                    </form>
-                </div>
                 <div class="col d-none d-md-block align-self-center" name="image-content-column">
                     <img src="/static/img/watercolor/orc_warrior_01.png">
+                </div>
+            </div>
+            <div class="row gx-5">
+                <div class="col">
+                    <button class="btn btn-danger" id="download-pdf-button">Download PDF</button>
                 </div>
             </div>
         </div>
