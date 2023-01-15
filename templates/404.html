@@ -2,8 +2,13 @@
 {% block title %}404 Error{% endblock %}
 {% block main %}
 <div class="container-lg">
-    <div class="row text-center text-light pt-3">
-        <h1>Oh no! 404 error!</h1>
+    <div class="row text-center text-light gx-5">
+        <div class="col d-none d-lg-block">
+            <h1>Oh no! 404 error!</h1>
+        </div>
+        <div class="col d-lg-none">
+            <h2 class="title">Oh no! 404 error!</h2>
+        </div>
     </div>
     <div class="row bg-torn-top"></div>
     <div class="row bg-paper-content-btm p-4">
@@ -28,11 +33,8 @@
                 spell to find what you're looking for. Good luck on your journey!
             </p>     
         </div>
-        <div class="col">
-            <div class="frame-container">
-                <img class="frame" src="/static/img/polish/square_frame.png">
-                <img class="frame-img" src="/static/img/404_baby_dragon.jpg">
-            </div>
+        <div class="col-12 col-lg-6">
+            <img class="frame-img" src="/static/img/watercolor/cute_dragon_01.png">
         </div>
     </div>
     <div class="row bg-torn-btm"></div>

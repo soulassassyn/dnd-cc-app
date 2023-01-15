@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, request
+from flask import Flask, request, render_template, request, session
 from dotenv import load_dotenv
 import openai
 import os
@@ -13,6 +13,8 @@ load_dotenv()
 openai.api_key = os.environ.get('API_KEY')
 
 switch_state = False
+charName = None
+
 @app.route("/switch", methods=["POST"])
 def toggle_switch():
     global switch_state
@@ -39,9 +41,9 @@ def process_quiz():
     classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard", "Custom..."]
     backgrounds = ["Acolyte", "Criminal/Spy", "Folk Hero", "Noble", "Sage", "Soldier", "Custom..."]
 
-
     if request.method == "POST":
-        # Get the answers to the quiz questions from the form submission
+        # Get the answers to the quiz questions from the first page submission
+        nextButton = request.form.get("nextButton")
         q1 = request.form.get("q1")
         q2 = request.form.get("q2")
         q3 = request.form.get("q3")
@@ -54,7 +56,7 @@ def process_quiz():
         charName = request.form.get("charName")
         charRegion = request.form.get("charRegion")
         charBackground = request.form.get("charBackground")
-        
+        print(nextButton)
         # Use the answers to generate a backstory using the ChatGPT API
         if switch_state == True:
             backstory = generate_backstory(q1, q2, q3, q4, q5, q6, charRegion, charSex, charRace, charClass, charName, charBackground)
@@ -81,9 +83,9 @@ def process_quiz():
         for second in backstory[halfSentence:]:
             secondHalf += second
         
-        print(f"First Half: {firstHalf}")
-        print("---")
-        print(f"Second Half: {secondHalf}")
+        # print(f"First Half: {firstHalf}")
+        # print("---")
+        # print(f"Second Half: {secondHalf}")
         # Return the two halves of backstory to the user
         return render_template("backstory.html", firstHalf=firstHalf, secondHalf=secondHalf, charName=charName)
     

@@ -1,17 +1,28 @@
 {% extends "layout.html" %}
 {% block title %}Welcome to Character Background Generator{% endblock %}
 {% block main %}
-    <div class="container-lg">
-        <div class="row text-center text-light pt-3">
-            <h1>Creating Backstories, Simplified</h1>
+    <div class="container-lg px-4">
+        <div class="row text-center text-light gx-5">
+            <div class="col d-none d-lg-block">
+                <h1>Creating Backstories, Simplified</h1>
+            </div>
+            <div class="col d-lg-none">
+                <h2 class="title">Creating Backstories, Simplified</h2>
+            </div>
         </div>
-
-        <div class="row bg-torn-top"></div>
-        <div class="row bg-paper-content-btm p-4">
-            <div class="col">
-                <h2 class="text-center dnd-red p-4">Frequently Asked Questions for the D&D Backstory Generator</h2>
+        <div class="row bg-torn-top gx-5"></div>
+        <div class="row bg-paper-content-btm gx-5 p-4">
+            <div class="col dnd-red">
+                <div class="row py-4" name="paper-content-header">
+                    <div class="col text-center d-none d-lg-block">
+                        <h2>Frequently Asked Questions for the D&D Backstory Generator</h2>
+                    </div>
+                    <div class="col text-center d-lg-none">
+                        <h3>Frequently Asked Questions for the D&D Backstory Generator</h3>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col dnd-red">
+                    <div class="col">
                         <h4>What is the D&D Backstory Generator?</h4>
                         <p>
                             The D&D Backstory Generator is a tool that can help players create an original and 
@@ -40,22 +51,13 @@
                             the AI is constantly being updated and tweaked so that it only gets better over time.
                         </p>
                     </div>
-                    <div class="col">
-                        <div class="frame-container pb-5">
-                            <img class="frame" src="/static/img/polish/square_frame.png">
-                            <img class="frame-img" src="/static/img/lady_knight.jpg">
-                        </div>
-                        <div class="frame-container">
-                            <img class="frame" src="/static/img/polish/square_frame.png">
-                            <img class="frame-img" src="/static/img/giant_battle_01.jpg">
-                        </div>
+                    <div class="col-12 col-lg-6">
+                        <img src="/static/img/watercolor/dwarf_fighter_01.png">
                     </div>
                 </div>
-
             </div>
         </div>
-        <div class="row bg-torn-btm">
+        <div class="row bg-torn-btm gx-5">
         </div>
-
     </div>
 {% endblock %}
