@@ -27,6 +27,10 @@
     font-size: 20px;
 }
 
+a.login:hover{
+    color:#3a0f08;
+}
+
 h1, h2, h3, h4, h5 {
     font-family: mrs-eaves-roman-small-caps, serif;
 }
