@@ -29,6 +29,16 @@ def get_state():
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    return render_template("login.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+
+    return render_template("register.html")
     
 @app.route("/", methods=["GET", "POST"])
 def index():

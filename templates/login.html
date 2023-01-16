@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}Welcome to Character Background Generator{% endblock %}
+{% block main %}
+<div class="container-lg px-4">
+    <div class="row text-center text-light gx-5">
+        <div class="col d-none d-lg-block">
+            <h1>Creating Backstories, Simplified</h1>
+        </div>
+        <div class="col d-lg-none">
+            <h2 class="title">Creating Backstories, Simplified</h2>
+        </div>
+    </div>
+    <div class="row bg-torn-top gx-5"></div>
+    <div class="row bg-paper-content-btm gx-5 p-4">
+        <div class="col dnd-red">
+            <div class="row py-4" name="paper-content-header">
+                <div class="col text-center d-none d-lg-block">
+                    <h2>Sign In to Your Unique Adventure</h2>
+                </div>
+                <div class="col text-center d-lg-none">
+                    <h3>Sign In to Your Unique Adventure</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col bg-login">
+                    <form action="/login" method="POST" id="login">
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" required>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-torn-btm gx-5"></div>
+</div>
+{% endblock %}
