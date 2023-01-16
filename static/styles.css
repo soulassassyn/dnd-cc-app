@@ -21,10 +21,8 @@
     background-color: #d6bc97;
     text-align: center;
 }
-.bg-login {
-    background: url(/static/img/watercolor/login_tome.png); no-repeat center fixed;
-    background-size: cover;
-}
+
+
 .index-text p {
     font-size: 20px;
 }
@@ -81,22 +79,69 @@ img {
     background-color: #303030;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 575px) {
     #portrait-container {
         position: relative;
         height: calc(94vw);
     }
+    .login-position {
+        top: 450px;
+        left: calc(34vw);
+    }
 }
-@media (min-width: 768px) and (max-width: 1399px) {
+@media (min-width: 576px) and (max-width: 767px) {
+    #portrait-container {
+        position: relative;
+        height: calc(94vw);
+    }
+    .login-position {
+        top: 455px;
+        left: calc(35vw);
+        position: absolute;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
     #portrait-container {
         position: relative;
         height: calc(50vw);
+    }
+    .login-position {
+        top: 465px;
+        left: calc(37vw);
+        position: absolute;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    #portrait-container {
+        position: relative;
+        height: 750px;
+    }
+    .login-position {
+        top: 500px;
+        left: calc(42vw);
+        position: absolute;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+    #portrait-container {
+        position: relative;
+        height: 750px;
+    }
+    .login-position {
+        top: 510px;
+        left: calc(42vw);
+        position: absolute;
     }
 }
 @media (min-width: 1400px) {
     #portrait-container {
         position: relative;
         height: 750px;
+    }
+    .login-position {
+        top: 510px;
+        left: calc(42vw);
+        position: absolute;
     }
 }
 
