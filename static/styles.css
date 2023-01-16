@@ -80,6 +80,9 @@ img {
 }
 
 .bg-footer {
+    position: absolute;
+    width: 100%;
+    top: var(--total-height);
     background-color: #303030;
 }
 
