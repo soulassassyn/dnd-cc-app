@@ -47,13 +47,13 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 def process_quiz():
     races = ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Custom..."]
-    racesExtra = ["Aarakocra", "Aasimar", "Air Genasi", "Bugbear", "Centaur", "Changeling", "Deep Gnome", "Duergar", "Earth Genasi", "Eladrin", "Fairy", "Firbolg", "Fire Genasi", "Githyanki", "Githzerai", "Goblin", "Goliath", "Harengon", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Minotaur", "Orc", "Satyr", "Sea Elf", "Shadar-kai", "Shifter", "Tabaxi", "Tortle", "Triton", "Water Genasi", "Yuan-ti"]
+    # racesExtra = ["Aarakocra", "Aasimar", "Air Genasi", "Bugbear", "Centaur", "Changeling", "Deep Gnome", "Duergar", "Earth Genasi", "Eladrin", "Fairy", "Firbolg", "Fire Genasi", "Githyanki", "Githzerai", "Goblin", "Goliath", "Harengon", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Minotaur", "Orc", "Satyr", "Sea Elf", "Shadar-kai", "Shifter", "Tabaxi", "Tortle", "Triton", "Water Genasi", "Yuan-ti"]
     classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard", "Custom..."]
-    backgrounds = ["Acolyte", "Criminal/Spy", "Folk Hero", "Noble", "Sage", "Soldier", "Custom..."]
+    # backgrounds = ["Acolyte", "Criminal/Spy", "Folk Hero", "Noble", "Sage", "Soldier", "Custom..."]
 
     if request.method == "POST":
         # Get the answers to the quiz questions from the first page submission
-        nextButton = request.form.get("nextButton")
+
         q1 = request.form.get("q1")
         q2 = request.form.get("q2")
         q3 = request.form.get("q3")
@@ -64,12 +64,11 @@ def process_quiz():
         charRace = request.form.get("charRace")
         charClass = request.form.get("charClass")
         charName = request.form.get("charName")
-        charRegion = request.form.get("charRegion")
-        charBackground = request.form.get("charBackground")
-        print(nextButton)
+        charRegion = "Faerûn"
+        
         # Use the answers to generate a backstory using the ChatGPT API
         if switch_state == True:
-            backstory = generate_backstory(q1, q2, q3, q4, q5, q6, charRegion, charSex, charRace, charClass, charName, charBackground)
+            backstory = generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, charName, charRegion)
         else:
             backstory = "Barriston grew up in a small secluded village, on the edge of the Realm of Davorel. His parents were members of an ancient line of Paladin Knights that had served the realm since its founding. He was raised to be dutiful and respectful, learning from an early age the importance of chivalry and honour. He watched as his village grew more prosperous over the years due to trade with travelers from far and wide. But as it did so, fear began to creep into everyday life--stories of bandits and monsters terrorising local merchants spread like wildfire, until eventually it became too dangerous for traders to enter their borders anymore. With no other options left, Barriston's parents decided to join a group of other villagers who set off together in search for safety elsewhere. They made their way southwards through treacherous terrain until they reached a large city called Sontacia that promised protection within its walls. It was there that Barriston found himself recruited by the local Paladin Order—an organization that dedicated itself solely to protecting those in need against any kind of oppression or threat. For several years he trained under these warriors' tutelage, honing his skills both in combat and diplomacy alike as he learnt what it meant to fight for justice while still remaining fair-minded and diplomatic towards all sides involved in any conflict he found himself embroiled in later on down his path. Now armed with both strength and chastity at his side, Barriston strives each day to make a difference–to protect those who cannot protect themselves; so that others may live without fear just as he once did growing up back home before tragedy struck them all those many years ago when he was yet but just a boy."
         
@@ -85,7 +84,6 @@ def process_quiz():
             if periods == '.':
                 spaceNext = True
         halfSentence = halfbs + ccount
-
         firstHalf = ""
         secondHalf = ""
         for first in backstory[:halfSentence]:
@@ -93,21 +91,17 @@ def process_quiz():
         for second in backstory[halfSentence:]:
             secondHalf += second
         
-        # print(f"First Half: {firstHalf}")
-        # print("---")
-        # print(f"Second Half: {secondHalf}")
-        # Return the two halves of backstory to the user
         return render_template("backstory.html", firstHalf=firstHalf, secondHalf=secondHalf, charName=charName)
     
-    return render_template("create01.html", races=races, classes=classes, backgrounds=backgrounds)
+    return render_template("create01.html", races=races, classes=classes)
 
-def generate_backstory(q1, q2, q3, q4, q5, q6, charRegion, charSex, charRace, charClass, charName, charBackground):
+def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, charName, charRegion):
   # Use the ChatGPT API to generate a backstory based on the quiz answers
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=f"""Create a rich background story for a Dungeons & Dragons character.
                     {charSex} is a {charRace} {charClass} named {charName}.
-                    {charSex} is from {charRegion} and was a {charBackground}.
+                    Add a specific town or city from {charRegion} that {charName} is from.
                     The character is motivated by {q1}. 
                     They feel {q2} about authority. 
                     {q3} is how they handle conflict.

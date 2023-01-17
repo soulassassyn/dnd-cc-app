@@ -35,20 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Add an event listener to the class select menu
-    selectBackground.addEventListener("change", function() {
-        // Check if the "Custom......" option is selected
-        if (selectBackground.value === "Custom...") {
-            // Show the text input
-            backgroundInput.style.display = "block";
-            backgroundInput.required = true;
-        } else {
-            // Hide the text input
-            backgroundInput.style.display = "none";
-            backgroundInput.required = false;
-        }
-    });
-
     // Add an event listener to the form's submit button
     createBackstoryForm.addEventListener("submit", function(e) {
         //prevent default form submission
@@ -69,6 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
         //submit the form
         createBackstoryForm.submit();
     });
+
+
 });
-
-

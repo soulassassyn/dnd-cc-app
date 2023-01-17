@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}A Hero is Born{% endblock %}
 {% block main %}
+<!-- DEBUG SWITCHES -->
+<script src="/static/debug.js"></script>
 <script src="/static/backstory.js"></script>
+<script src="/static/loading.js"></script>
 <div class="container-lg px-4">
     <div class="row text-center text-light gx-5" name="main-header">
         <div class="col d-none d-md-block">
@@ -133,8 +136,12 @@
                     <img src="/static/img/watercolor/halfling_rogue_01.png">
                 </div>
                 <div class="row justify-content-end pt-4" name="button-content">
-                    <div class="col-3 text-center">
-                        <button type="submit" class="btn btn-danger" id="button">Submit</button>
+                    <div class="col-3 text-center pb-4">
+                            <!-- <button class="btn btn-danger" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button> -->
+                        <button type="submit" class="btn btn-danger" id="createButton">Submit</button>
                     </div>
                 </div>
             </form>
