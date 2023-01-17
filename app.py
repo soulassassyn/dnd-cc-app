@@ -1,11 +1,19 @@
-from flask import Flask, request, render_template, request, session
+from flask import Flask, request, render_template, session, redirect, url_for
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
+from sqlalchemy.orm import sessionmaker
+from passlib.hash import sha256_crypt
 from dotenv import load_dotenv
+from models import User
+import sqlite3
 import openai
 import os
 
 app = Flask(__name__)
 app.config['TESTING'] = True
-
+login_manager = LoginManager()
+login_manager.init_app(app)
+Session = sessionmaker(bind=engine)
+session = Session()
 # Loads the private API_KEY from a separate file
 # If you'd like to use this code you will need your own API Key
 # You can generate your own at https://beta.openai.com/
@@ -26,25 +34,67 @@ def toggle_switch():
 def get_state():
     return {"DEBUG API:": "On" if switch_state else "Off"}
 
+@login_manager.user_loader
+def load_user(user_id):
+    return session.query(User).get(user_id)
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        # Get the user data from the form
+        username = request.form['username']
+        password = request.form['password']
 
-    return render_template("login.html")
+        # Check the user credentials
+        user = session.query(User).filter_by(name=username).first()
 
-@app.route("/register", methods=["GET", "POST"])
+        # If the user exists and the password is correct
+        if user is not None and sha256_crypt.verify(password, user.password):
+            # Log the user in
+            login_user(user)
+            return redirect(url_for('dashboard'))
+        else:
+            # Show an error message
+            return 'Invalid username or password'
+    else:
+        # Show the login form
+        return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        # Get the user data from the form
+        username = request.form['username']
+        password = request.form['password']
 
-    return render_template("register.html")
+        # Hash the password
+        password = sha256_crypt.hash(password)
+
+        # Check if the username is already taken
+        existing_user = session.query(User).filter_by(name=username).first()
+        if existing_user is None:
+            # Create a new user and add it to the database
+            new_user = User(username=username, password=password)
+            session.add(new_user)
+            session.commit()
+            return redirect(url_for('login'))
+        else:
+            # Show an error message
+            return 'Username already taken'
+    else:
+        # Show the register form
+        return render_template('register.html')
     
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
 
 @app.route("/create", methods=["GET", "POST"])
+@login_required
 def process_quiz():
     races = ["Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling", "Custom..."]
     # racesExtra = ["Aarakocra", "Aasimar", "Air Genasi", "Bugbear", "Centaur", "Changeling", "Deep Gnome", "Duergar", "Earth Genasi", "Eladrin", "Fairy", "Firbolg", "Fire Genasi", "Githyanki", "Githzerai", "Goblin", "Goliath", "Harengon", "Hobgoblin", "Kenku", "Kobold", "Lizardfolk", "Minotaur", "Orc", "Satyr", "Sea Elf", "Shadar-kai", "Shifter", "Tabaxi", "Tortle", "Triton", "Water Genasi", "Yuan-ti"]
