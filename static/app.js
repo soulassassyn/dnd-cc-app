@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Calculates and properly places the footer
     function checkHeight() {
         let totalHeight = 0;
         if (document.body.scrollHeight > window.innerHeight) {

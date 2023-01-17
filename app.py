@@ -12,8 +12,8 @@ app.config['TESTING'] = True
 load_dotenv()
 openai.api_key = os.environ.get('API_KEY')
 
+
 switch_state = False
-charName = None
 
 @app.route("/switch", methods=["POST"])
 def toggle_switch():
@@ -99,24 +99,29 @@ def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, cha
   # Use the ChatGPT API to generate a backstory based on the quiz answers
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=f"""Create a rich background story for a Dungeons & Dragons character.
-                    {charSex} is a {charRace} {charClass} named {charName}.
-                    Add a specific town or city from {charRegion} that {charName} is from.
-                    The character is motivated by {q1}. 
-                    They feel {q2} about authority. 
-                    {q3} is how they handle conflict.
-                    {q4} is their goal.
-                    {q5} are their flaws.
-                    {q6} is how they relate to others.""",
+        # prompt=f"Create a rich background story for a Dungeons & Dragons character named {charName}. {charName} is a {charRace} {charClass} who is motivated by {q1}. They feel {q2} about authority. {q3} is how they handle conflict. {q4} is their goal. {q5} are their flaws. {q6} is how they relate to others. Describe where {charName} grew up, what kind of environment and culture it was and how it shaped who they are today.",
+        
+        prompt=f"Create a rich backstory for a Dungeons & Dragons character named {charName}. {charSex} is a {charRace} {charClass}. Add a specific town or city from {charRegion} that {charName} is from. Also include explanations for why {charSex} wants {q1}, why they struggle with {q5} and are {q6} towards others. In addition to all of that, make sure the backstory is creative and explains the character's life up to the current day. Write three paragraphs.",
+        # prompt=f"""Create a rich background story for a Dungeons & Dragons character.
+        #     {charSex} is a {charRace} {charClass} named {charName}.
+        #     Add a specific town or city from {charRegion} that {charName} is from.
+        #     Make sure to give a reason for them being a {charClass}.
+        #     The character is motivated by {q1}. 
+        #     They feel {q2} about authority. 
+        #     {q3} is how they handle conflict.
+        #     {q4} is their goal.
+        #     {q5} are their flaws.
+        #     {q6} is how they relate to others.""",
+            
         # Max 1,000 requests for $10
-        max_tokens=700,
+        max_tokens=1000,
         top_p=1,
-        temperature=0.9,
-        frequency_penalty=0.8,
+        temperature=0.8,
+        frequency_penalty=0.5,
         presence_penalty=0.5
         )
     backstory = response["choices"][0]["text"]
-
+    print(backstory)
     return backstory
 
 @app.route("/pricing", methods=["GET"])

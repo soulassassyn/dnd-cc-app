@@ -2,10 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const createBackstoryForm = document.getElementById("createBackstory");
     const selectRace = document.getElementById("charRace");
     const selectClass = document.getElementById("charClass");
-    const selectBackground = document.getElementById("charBackground");
     const raceInput = document.getElementById("race-input");
     const classInput = document.getElementById("class-input");
-    const backgroundInput = document.getElementById("background-input");
 
     // Add an event listener to the race select menu
     selectRace.addEventListener("change", function() {
@@ -48,13 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Update the value of the select menu to the text entered in the text box
             charClass.value = classInput.value;
         }
-        if (charBackground.value === "Custom...") {
-            // Update the value of the select menu to the text entered in the text box
-            charBackground.value = backgroundInput.value;
-        }
         //submit the form
         createBackstoryForm.submit();
     });
-
-
 });
