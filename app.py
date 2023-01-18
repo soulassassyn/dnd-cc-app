@@ -60,7 +60,7 @@ def login():
         if user is not None and sha256_crypt.verify(password, user.password):
             # Log the user in
             login_user(user, remember=True)
-            return render_template('test.html', username=username)
+            return render_template('create01.html', username=username)
         else:
             # Show an error message
             session.close()
@@ -102,7 +102,12 @@ def register():
     else:
         # Show the register form
         return render_template('register.html')
-    
+
+@app.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
+
+    return render_template("dashboard.html")
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("index.html")

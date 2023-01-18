@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}A Hero is Born{% endblock %}
+{% block main %}
+<div class="container-lg px-4 pdf">
+    <div class="row text-center text-light gx-5" name="main-header">
+        <div class="col d-none d-lg-block">
+            <h1>Welcome, {{ current_user.username }}</h1>
+        </div>
+        <div class="col d-lg-none">
+            <h2 class="title">Welcome, {{ current_user.username }}</h2>
+        </div>
+    </div>
+    <div class="row bg-torn-top gx-5"></div>
+    <div class="row bg-paper-content-btm dnd-red gx-5 p-4" name="paper-content-container">
+        <div class="col">
+            <div class="row py-4" name="paper-content-header">
+                <div class="col text-center d-none d-lg-block">
+                    <h2>Your Journey So Far</h2>
+                </div>
+                <div class="col text-center d-lg-none">
+                    <h3>Your Journey So Far</h3>
+                </div>
+            </div>
+            <div class="row gx-5" name="paper-content-body">
+                <div class="col-12 col-md-6">
+                    <h4>Saved Stories</h4>
+                    <p>There's not much here right now but that's okay. We'll be adding the functionality to save your generated backstories here so that you can reference them later! For now, go ahead and try <a href="/create" class="dnd-red login">creating your first backstory.</a> If you're not new, you know the drill... and welcome back.</p>
+                </div>
+                <div class="col-12 col-md-6 align-self-center" name="image-content-column">
+                    <img src="/static/img/watercolor/journey_so_far_001.png">
+                </div>
+            </div>
+            <div class="row gx-5">
+                <div class="col">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-torn-btm gx-5"></div>
+</div>
+{% endblock %}

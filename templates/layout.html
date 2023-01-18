@@ -30,7 +30,14 @@
                         <!-- <li class="nav-item"><a class="nav-link" href="/pricing">Pricing</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="/faq">FAQ</a></li>
                     </ul>
-                    <a class="pe-5 dnd-red text-decoration-none login" href="/login">Login</a>
+                    {% if current_user.is_authenticated %}
+                        <a class="pe-4 dnd-red text-decoration-none login" href="/dashboard">Hi, {{ current_user.username }}!</a>
+                        <form class="pe-5 " action="/logout" method="POST" id="logout">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
+                    {% else %}
+                        <a class="pe-5 dnd-red text-decoration-none login" href="/login">Login</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
