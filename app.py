@@ -1,17 +1,19 @@
-from flask import Flask, request, render_template, session, redirect, url_for
+from flask import Flask, request, render_template, session, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from sqlalchemy.orm import sessionmaker
 from passlib.hash import sha256_crypt
 from dotenv import load_dotenv
-from models import User
+from models import User, engine
 import sqlite3
 import openai
 import os
 
 app = Flask(__name__)
 app.config['TESTING'] = True
+app.secret_key = os.environ.get('FL_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = 'login'
 Session = sessionmaker(bind=engine)
 session = Session()
 # Loads the private API_KEY from a separate file
@@ -36,6 +38,8 @@ def get_state():
 
 @login_manager.user_loader
 def load_user(user_id):
+    Session = sessionmaker(bind=engine)
+    session = Session()
     return session.query(User).get(user_id)
 
 @app.errorhandler(404)
@@ -50,16 +54,18 @@ def login():
         password = request.form['password']
 
         # Check the user credentials
-        user = session.query(User).filter_by(name=username).first()
+        user = session.query(User).filter_by(username=username).first()
 
         # If the user exists and the password is correct
         if user is not None and sha256_crypt.verify(password, user.password):
             # Log the user in
             login_user(user)
-            return redirect(url_for('dashboard'))
+            return render_template('test.html', username=username)
         else:
             # Show an error message
-            return 'Invalid username or password'
+            session.close()
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
     else:
         # Show the login form
         return render_template('login.html')
@@ -70,15 +76,18 @@ def register():
         # Get the user data from the form
         username = request.form['username']
         password = request.form['password']
+        email = request.form['email']
 
-        # Hash the password
-        password = sha256_crypt.hash(password)
+        Session = sessionmaker(bind=engine)
+        session = Session()
 
         # Check if the username is already taken
-        existing_user = session.query(User).filter_by(name=username).first()
+        existing_user = session.query(User).filter_by(username=username).first()
         if existing_user is None:
             # Create a new user and add it to the database
-            new_user = User(username=username, password=password)
+            # Hash the password
+            hashed_password = sha256_crypt.hash(password)
+            new_user = User(username=username, password=hashed_password, email=email)
             session.add(new_user)
             session.commit()
             return redirect(url_for('login'))
@@ -181,6 +190,10 @@ def pricing():
 @app.route("/faq", methods=["GET"])
 def faq():
     return render_template("faq.html")
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))
 
 @app.route("/test", methods=["GET"])
 def test():
