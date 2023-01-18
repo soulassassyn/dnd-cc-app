@@ -22,6 +22,8 @@ session = Session()
 load_dotenv()
 openai.api_key = os.environ.get('API_KEY')
 
+# DEBUG Boolean
+debug = False
 
 switch_state = False
 
@@ -120,9 +122,10 @@ def process_quiz():
     classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard", "Custom..."]
     # backgrounds = ["Acolyte", "Criminal/Spy", "Folk Hero", "Noble", "Sage", "Soldier", "Custom..."]
 
+    global debug
+
     if request.method == "POST":
         # Get the answers to the quiz questions from the first page submission
-
         q1 = request.form.get("q1")
         q2 = request.form.get("q2")
         q3 = request.form.get("q3")
@@ -162,7 +165,7 @@ def process_quiz():
         
         return render_template("backstory.html", firstHalf=firstHalf, secondHalf=secondHalf, charName=charName)
     
-    return render_template("create01.html", races=races, classes=classes)
+    return render_template("create01.html", races=races, classes=classes, debug=debug)
 
 def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, charName, charRegion):
   # Use the ChatGPT API to generate a backstory based on the quiz answers
