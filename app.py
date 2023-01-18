@@ -59,7 +59,7 @@ def login():
         # If the user exists and the password is correct
         if user is not None and sha256_crypt.verify(password, user.password):
             # Log the user in
-            login_user(user)
+            login_user(user, remember=True)
             return render_template('test.html', username=username)
         else:
             # Show an error message
@@ -69,6 +69,11 @@ def login():
     else:
         # Show the login form
         return render_template('login.html')
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
