@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Welcome to Character Background Generator{% endblock %}
+{% block main %}
+    <div class="container-lg px-4">
+        <div class="row text-center text-light gx-5">
+            <div class="col d-none d-lg-block">
+                <h1>Character Backstory Generator</h1>
+            </div>
+            <div class="col d-lg-none">
+                <h2 class="title">Character Backstory Generator</h2>
+            </div>
+        </div>
+        <div class="row bg-torn-top gx-5"></div>
+        <div class="row bg-paper-content-btm gx-5 p-4">
+            <div class="col dnd-red">
+                <div class="row py-4" name="paper-content-header">
+                    <div class="col text-center d-none d-lg-block">
+                        <h2>Release Notes</h2>
+                    </div>
+                    <div class="col text-center d-lg-none">
+                        <h3>Release Notes</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>v 0.90</h4>
+                        <p>- Beta testing live</p>
+                        <p>- Basic account creation</p>
+                        <p>- Access to Create Backstory</p>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <img src="/static/img/watercolor/human_paladin_01.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-torn-btm gx-5">
+        </div>
+    </div>
+{% endblock %}

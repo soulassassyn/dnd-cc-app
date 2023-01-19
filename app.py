@@ -69,9 +69,12 @@ def login():
 
         # If the user exists and the password is correct
         if user is not None and sha256_crypt.verify(password, user.password):
-            # Log the user in
-            login_user(user, remember=True)
-            return render_template('create01.html', username=username)
+            try:
+                # Log the user in
+                login_user(user, remember=True)
+                return render_template('create01.html', username=username)
+            finally:
+                session.close()
         else:
             # Show an error message
             session.close()
@@ -208,6 +211,10 @@ def pricing():
 @app.route("/faq", methods=["GET"])
 def faq():
     return render_template("faq.html")
+
+@app.route("/release", methods=["GET"])
+def release():
+    return render_template("release.html")
 
 # Sends user to the login route if they aren't logged in and try to access a restricted area of the site
 @login_manager.unauthorized_handler
