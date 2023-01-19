@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from passlib.hash import sha256_crypt
 from dotenv import load_dotenv
 from models import User, engine
-import sqlite3
+from wtforms import Form, StringField, validators
 import openai
 import os
 
@@ -77,13 +77,21 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# User registration form validation class
+class registrationForm(Form):
+    username = StringField('username', [validators.Length(min=4, max=25)])
+    email = StringField('email', [validators.Email()])
+    password = StringField('password', [validators.Length(min=8, max=40)])
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
+    rform = registrationForm(request.form)
+    print(f"form data: {rform}")
+    if request.method == 'POST' and rform.validate():
         # Get the user data from the form
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
+        username = rform.username.data
+        password = rform.password.data
+        email = rform.email.data
 
         Session = sessionmaker(bind=engine)
         session = Session()
@@ -171,19 +179,8 @@ def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, cha
   # Use the ChatGPT API to generate a backstory based on the quiz answers
     response = openai.Completion.create(
         model="text-davinci-003",
-        # prompt=f"Create a rich background story for a Dungeons & Dragons character named {charName}. {charName} is a {charRace} {charClass} who is motivated by {q1}. They feel {q2} about authority. {q3} is how they handle conflict. {q4} is their goal. {q5} are their flaws. {q6} is how they relate to others. Describe where {charName} grew up, what kind of environment and culture it was and how it shaped who they are today.",
         
         prompt=f"Create a rich backstory for a Dungeons & Dragons character named {charName}. {charSex} is a {charRace} {charClass}. Add a specific town or city from {charRegion} that {charName} is from. Also include explanations for why {charSex} wants {q1}, why they struggle with {q5} and are {q6} towards others. In addition to all of that, make sure the backstory is creative and explains the character's life up to the current day. Write three paragraphs.",
-        # prompt=f"""Create a rich background story for a Dungeons & Dragons character.
-        #     {charSex} is a {charRace} {charClass} named {charName}.
-        #     Add a specific town or city from {charRegion} that {charName} is from.
-        #     Make sure to give a reason for them being a {charClass}.
-        #     The character is motivated by {q1}. 
-        #     They feel {q2} about authority. 
-        #     {q3} is how they handle conflict.
-        #     {q4} is their goal.
-        #     {q5} are their flaws.
-        #     {q6} is how they relate to others.""",
             
         # Max 1,000 requests for $10
         max_tokens=1000,
@@ -204,6 +201,7 @@ def pricing():
 def faq():
     return render_template("faq.html")
 
+# Sends user to the login route if they aren't logged in and try to access a restricted area of the site
 @login_manager.unauthorized_handler
 def unauthorized():
     return redirect(url_for('login'))
