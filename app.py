@@ -42,18 +42,27 @@ def get_state():
 def load_user(user_id):
     Session = sessionmaker(bind=engine)
     session = Session()
-    return session.query(User).get(user_id)
+    try:
+        return session.query(User).get(user_id)
+    finally:
+        session.close()
+
 
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
 
+class loginForm(Form):
+    username = StringField('username', [validators.Length(min=4, max=25)])
+    password = StringField('password', [validators.Length(min=8, max=40)])
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    lform = loginForm(request.form)
+    if request.method == 'POST' and lform.validate():
         # Get the user data from the form
-        username = request.form['username']
-        password = request.form['password']
+        username = lform.username.data
+        password = lform.password.data
 
         # Check the user credentials
         user = session.query(User).filter_by(username=username).first()
@@ -86,7 +95,6 @@ class registrationForm(Form):
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     rform = registrationForm(request.form)
-    print(f"form data: {rform}")
     if request.method == 'POST' and rform.validate():
         # Get the user data from the form
         username = rform.username.data
@@ -99,9 +107,9 @@ def register():
         # Check if the username is already taken
         existing_user = session.query(User).filter_by(username=username).first()
         if existing_user is None:
-            # Create a new user and add it to the database
-            # Hash the password
+            # Salt and hash the password
             hashed_password = sha256_crypt.hash(password)
+            # Create a new user and add it to the database
             new_user = User(username=username, password=hashed_password, email=email)
             session.add(new_user)
             session.commit()
