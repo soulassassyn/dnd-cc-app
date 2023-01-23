@@ -25,7 +25,7 @@ openai.api_key = os.getenv('API_KEY')
 # DEBUG Boolean
 debug = False
 
-switch_state = False
+switch_state = not debug
 
 @app.route("/switch", methods=["POST"])
 def toggle_switch():
@@ -72,7 +72,7 @@ def login():
             try:
                 # Log the user in
                 login_user(user, remember=True)
-                return render_template('create01.html', username=username)
+                return redirect(url_for('process_quiz'))
             finally:
                 session.close()
         else:
