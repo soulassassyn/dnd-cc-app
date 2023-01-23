@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
 
@@ -30,4 +30,7 @@ class User(Base, UserMixin):
         return False
 
 engine = create_engine('sqlite:///adventurers.db')
-Base.metadata.create_all(bind=engine)
+meta = MetaData()
+meta.reflect(bind=engine)
+if not meta.tables:
+    Base.metadata.create_all(bind=engine)
