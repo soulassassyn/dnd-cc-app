@@ -7,10 +7,11 @@ from models import User, engine
 from wtforms import Form, StringField, validators
 import openai
 import os
+load_dotenv()
 
 app = Flask(__name__)
 app.config['TESTING'] = True
-app.secret_key = os.environ.get('FL_KEY')
+app.secret_key = os.getenv('FL_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -19,8 +20,7 @@ session = Session()
 # Loads the private API_KEY from a separate file
 # If you'd like to use this code you will need your own API Key
 # You can generate your own at https://beta.openai.com/
-load_dotenv()
-openai.api_key = os.environ.get('API_KEY')
+openai.api_key = os.getenv('API_KEY')
 
 # DEBUG Boolean
 debug = False
