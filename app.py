@@ -189,10 +189,12 @@ def process_quiz():
 
 def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, charName, charRegion):
   # Use the ChatGPT API to generate a backstory based on the quiz answers
-    response = openai.Completion.create(
-        model="gpt-4",
-        
-        prompt=f"Create a rich backstory for a Dungeons & Dragons character named {charName}. {charSex} is a {charRace} {charClass}. Add a specific town or city from {charRegion} that {charName} is from. Also include explanations for why {charSex} wants {q1}, why they struggle with {q5} and are {q6} towards others. In addition to all of that, make sure the backstory is creative and explains the character's life up to the current day. Write three paragraphs.",
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+        {"role": "system", "content": "You are a creative writer for Dungeons & Dragons content."},
+        {"role": "user", "content": f"Create a rich backstory for a Dungeons & Dragons character named {charName}. {charSex} is a {charRace} {charClass}. Add a specific town or city from {charRegion} that {charName} is from. Also include explanations for why {charSex} wants {q1}, why they struggle with {q5} and are {q6} towards others. In addition to all of that, make sure the backstory is creative and explains the character's life up to the current day. Write three paragraphs."}
+        ],
             
         # Max 1,000 requests for $10
         max_tokens=1000,
@@ -201,8 +203,7 @@ def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, cha
         frequency_penalty=0.5,
         presence_penalty=0.5
         )
-    backstory = response["choices"][0]["text"]
-    print(backstory)
+    backstory = response["choices"][0]["message"]["content"]
     return backstory
 
 @app.route("/pricing", methods=["GET"])
