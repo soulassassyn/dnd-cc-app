@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect, url_for, flash
+from flask import Flask, flask, request, render_template, session, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from sqlalchemy.orm import sessionmaker
 from passlib.hash import sha256_crypt
@@ -15,8 +15,9 @@ app.secret_key = os.getenv('FL_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-Session = sessionmaker(bind=engine)
-session = Session()
+session = flask.session['db_session']
+
+
 # Loads the private API_KEY from a separate file
 # If you'd like to use this code you will need your own API Key
 # You can generate your own at https://beta.openai.com/
@@ -38,10 +39,21 @@ def toggle_switch():
 def get_state():
     return {"DEBUG API:": "On" if switch_state else "Off"}
 
+@app.before_request
+def create_session():
+    Session = sessionmaker(bind=engine)
+    flask.session['db_session'] = Session()
+
+@app.teardown_request
+def close_session(exception=None):
+    db_session = flask.session.get('db_session')
+    if db_session:
+        db_session.close()
+
 @login_manager.user_loader
 def load_user(user_id):
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    session = flask.session['db_session']
+
     try:
         return session.query(User).get(user_id)
     finally:
@@ -104,8 +116,8 @@ def register():
         password = rform.password.data
         email = rform.email.data
 
-        Session = sessionmaker(bind=engine)
-        session = Session()
+        session = flask.session['db_session']
+
 
         # Check if the username is already taken
         existing_user = session.query(User).filter_by(username=username).first()
