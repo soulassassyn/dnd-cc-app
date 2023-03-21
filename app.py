@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect, url_for, flash
+from flask import Flask, request, render_template, session, redirect, url_for, flash, g
 import flask
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from sqlalchemy.orm import sessionmaker
@@ -16,7 +16,7 @@ app.secret_key = os.getenv('FL_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-session = flask.session['db_session']
+session = g.db_session
 
 
 # Loads the private API_KEY from a separate file
@@ -43,17 +43,17 @@ def get_state():
 @app.before_request
 def create_session():
     Session = sessionmaker(bind=engine)
-    flask.session['db_session'] = Session()
+    g.db_session = Session()
 
 @app.teardown_request
 def close_session(exception=None):
-    db_session = flask.session.get('db_session')
-    if db_session:
+    db_session = g.get('db_session')
+    if db_session is not None:
         db_session.close()
 
 @login_manager.user_loader
 def load_user(user_id):
-    session = flask.session['db_session']
+    session = g.db_session
 
     try:
         return session.query(User).get(user_id)
@@ -117,7 +117,7 @@ def register():
         password = rform.password.data
         email = rform.email.data
 
-        session = flask.session['db_session']
+        session = g.db_session
 
 
         # Check if the username is already taken
