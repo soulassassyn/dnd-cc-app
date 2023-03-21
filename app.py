@@ -1,4 +1,5 @@
-from flask import Flask, flask, request, render_template, session, redirect, url_for, flash
+from flask import Flask, request, render_template, session, redirect, url_for, flash
+import flask
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from sqlalchemy.orm import sessionmaker
 from passlib.hash import sha256_crypt
