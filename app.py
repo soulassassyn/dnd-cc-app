@@ -190,7 +190,7 @@ def process_quiz():
 def generate_backstory(q1, q2, q3, q4, q5, q6, charSex, charRace, charClass, charName, charRegion):
   # Use the ChatGPT API to generate a backstory based on the quiz answers
     response = openai.Completion.create(
-        model="text-davinci-003",
+        model="gpt-4",
         
         prompt=f"Create a rich backstory for a Dungeons & Dragons character named {charName}. {charSex} is a {charRace} {charClass}. Add a specific town or city from {charRegion} that {charName} is from. Also include explanations for why {charSex} wants {q1}, why they struggle with {q5} and are {q6} towards others. In addition to all of that, make sure the backstory is creative and explains the character's life up to the current day. Write three paragraphs.",
             
