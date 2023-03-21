@@ -1,5 +1,4 @@
-from flask import Flask, request, render_template, session, redirect, url_for, flash, g
-import flask
+from flask import Flask, request, render_template, session, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from sqlalchemy.orm import sessionmaker
 from passlib.hash import sha256_crypt
@@ -16,9 +15,8 @@ app.secret_key = os.getenv('FL_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-session = g.db_session
-
-
+Session = sessionmaker(bind=engine)
+session = Session()
 # Loads the private API_KEY from a separate file
 # If you'd like to use this code you will need your own API Key
 # You can generate your own at https://beta.openai.com/
@@ -40,21 +38,9 @@ def toggle_switch():
 def get_state():
     return {"DEBUG API:": "On" if switch_state else "Off"}
 
-@app.before_request
-def create_session():
-    Session = sessionmaker(bind=engine)
-    g.db_session = Session()
-
-@app.teardown_request
-def close_session(exception=None):
-    db_session = g.get('db_session')
-    if db_session is not None:
-        db_session.close()
-
 @login_manager.user_loader
 def load_user(user_id):
-    session = g.db_session
-
+    session = Session()
     try:
         return session.query(User).get(user_id)
     finally:
@@ -78,6 +64,7 @@ def login():
         password = lform.password.data
 
         # Check the user credentials
+        session = Session()
         user = session.query(User).filter_by(username=username).first()
 
         # If the user exists and the password is correct
@@ -117,8 +104,7 @@ def register():
         password = rform.password.data
         email = rform.email.data
 
-        session = g.db_session
-
+        session = Session()
 
         # Check if the username is already taken
         existing_user = session.query(User).filter_by(username=username).first()
@@ -129,9 +115,11 @@ def register():
             new_user = User(username=username, password=hashed_password, email=email)
             session.add(new_user)
             session.commit()
+            session.close()
             return redirect(url_for('login'))
         else:
             # Show an error message
+            session.close()
             return 'Username already taken'
     else:
         # Show the register form
