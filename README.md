@@ -5,6 +5,8 @@ Utilizing OpenAI's GPT-4 Text completion AI, this app gathers some quick informa
 
 The goal of this app was to create a lightweight and fun experience that delivers a background story that might've otherwise taken the user 10x longer to create on their own. This way they can get a clear idea for who their character is and make tweaks/add specifics and be ready to start rolling the dice faster than ever before! A great alternative to using the staticly generated DnD characters of the past.
 
+Check out the live app here: https://dnd-character-backstory-generator.onrender.com
+
 Enjoy!
 
 -Soul 🐉
